@@ -1,3 +1,4 @@
+using JetBrains.Annotations;
 using UnityEngine;
 
 public class Birb : MonoBehaviour
@@ -7,10 +8,11 @@ public class Birb : MonoBehaviour
     public float strength = 5;
 
     private SpriteRenderer spriteRenderer;
+    private AudioSource audioSource;
+    public AudioClip audioTest;
     public GameManager gameManager;
     public Sprite[] sprites;
     private int spriteIndex;
-
 
 
 
@@ -18,6 +20,7 @@ public class Birb : MonoBehaviour
     {
         spriteRenderer = GetComponent<SpriteRenderer>();
         InvokeRepeating(nameof(AnimateSprite), .15f, .15f);
+        
     }
 
     void Update()
@@ -25,6 +28,7 @@ public class Birb : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.Space))
         {
             direction = Vector3.up * strength;
+            audioSource.PlayOneShot(audioTest);
         }
         direction.y += gravity * Time.deltaTime;
         transform.position += direction * Time.deltaTime;
