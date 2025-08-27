@@ -7,6 +7,7 @@ public class Birb : MonoBehaviour
     public float strength = 5;
 
     private SpriteRenderer spriteRenderer;
+    public GameManager gameManager;
     public Sprite[] sprites;
     private int spriteIndex;
 
@@ -16,7 +17,7 @@ public class Birb : MonoBehaviour
     void Start()
     {
         spriteRenderer = GetComponent<SpriteRenderer>();
-        InvokeRepeating(nameof(AnimateSprite), .15f,.15f);
+        InvokeRepeating(nameof(AnimateSprite), .15f, .15f);
     }
 
     void Update()
@@ -31,10 +32,21 @@ public class Birb : MonoBehaviour
     private void AnimateSprite()
     {
         spriteIndex++;
-        if (spriteIndex >= sprites.Length){
+        if (spriteIndex >= sprites.Length)
+        {
             spriteIndex = 0;
         }
         spriteRenderer.sprite = sprites[spriteIndex];
+    }
+    private void OnTriggerEnter2D(Collider2D other) {
+        if (other.gameObject.tag == "Obstacle")
+        {
+            gameManager.GameOver();
+        }
+        else if (other.gameObject.tag == "Scoring")
+        {
+            gameManager.IncreaseScore();
+        }
     }
 }
 
