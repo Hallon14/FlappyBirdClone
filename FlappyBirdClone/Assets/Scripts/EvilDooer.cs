@@ -1,12 +1,11 @@
-using UnityEditor.ShaderGraph.Internal;
 using UnityEngine;
 
-public class NewMonoBehaviourScript : MonoBehaviour
+public class Evildooer : MonoBehaviour
 {
     public GameObject preFab;
-    public float spawnRate = 5f;
-    public float minHeight = -1f;
-    public float maxHeight = 1f;
+    public float spawnRate = 1;
+    public float minHeight = -1.5f;
+    public float maxHeight = 1.5f;
 
     private void OnEnable() {
         InvokeRepeating(nameof(Spawn), spawnRate, spawnRate);
@@ -18,7 +17,7 @@ public class NewMonoBehaviourScript : MonoBehaviour
 
     private void Spawn()
     {
-        GameObject pipes = Instantiate(preFab);
+        GameObject pipes = Instantiate(preFab, transform.position, Quaternion.identity);
         pipes.transform.position += Vector3.up * Random.Range(minHeight, maxHeight);
     }
 }
