@@ -564,7 +564,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 39ef23c68d5e3e440b2a5693b832989a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Paralax
-  animationSpeed: 0.75
+  animationSpeed: 0.9
 --- !u!23 &1267664908
 MeshRenderer:
   m_ObjectHideFlags: 0
