@@ -16,10 +16,7 @@ public class Birb : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.Space))
         {
-            direction = Vector3.up * strength;
-            //gameObject.transform.Rotate(0, 0, 45, Space.World); //Backflipping boy
-            gameObject.transform.rotation = Quaternion.Euler(0, 0, 45);
-            
+            jump();
         }
         gameObject.transform.Rotate(0, 0, -roatationSpeed * Time.deltaTime, Space.World);
         direction.y += gravity * Time.deltaTime;
@@ -35,6 +32,16 @@ public class Birb : MonoBehaviour
         {
             gameManager.IncreaseScore();
         }
+    }
+    public void jump()
+    {
+        direction = Vector3.up * strength;
+        //gameObject.transform.Rotate(0, 0, 45, Space.World); //Backflipping boy
+        gameObject.transform.rotation = Quaternion.Euler(0, 0, 45);
+        gameObject.transform.Rotate(0, 0, -roatationSpeed * Time.deltaTime, Space.World);
+
+        direction.y += gravity * Time.deltaTime;
+        transform.position += direction * Time.deltaTime;
     }
 }
 

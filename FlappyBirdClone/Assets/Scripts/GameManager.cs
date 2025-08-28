@@ -13,6 +13,7 @@ public class GameManager : MonoBehaviour
 
 
     public Text scoreText;
+    private bool isPlaying = false;
 
     public GameObject playButton;
     public GameObject gameButton;
@@ -48,6 +49,16 @@ public class GameManager : MonoBehaviour
         InvokeRepeating(nameof(AnimateSprite), .15f, .15f);
     }
 
+    void Update()
+    {
+
+        if (Input.GetKeyDown(KeyCode.Space) && isPlaying == false)
+        {
+            Play();
+            birb.jump();
+        }
+    } 
+
 
 
     public void Awake()
@@ -58,6 +69,7 @@ public class GameManager : MonoBehaviour
     }
     public void Play()
     {
+        isPlaying = true;
         score = 0;
         scoreText.text = score.ToString();
 
@@ -78,12 +90,14 @@ public class GameManager : MonoBehaviour
         {
             Destroy(pipe.gameObject); // Important: destroy the GameObject, not just the component
         }
+        
 
     }
     public void pause()
     {
         Time.timeScale = 0f;
         birb.enabled = false;
+        isPlaying = false;
     }
 
     public void IncreaseScore()
