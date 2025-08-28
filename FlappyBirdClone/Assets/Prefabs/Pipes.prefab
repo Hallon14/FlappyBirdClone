@@ -80,12 +80,12 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 1304208510633726333, guid: 7e81851b59bbd4e479b3f966fe0e9bf4, type: 3}
+  m_Sprite: {fileID: 3052964475314764898, guid: 8154dda5e0385e7499254288b52a6982, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
-  m_Size: {x: 1.0833334, y: 6.6666665}
+  m_Size: {x: 0.25, y: 1.6}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
@@ -129,8 +129,8 @@ BoxCollider2D:
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 1.0833334, y: 6.6666665}
-    newSize: {x: 1.0833334, y: 6.6666665}
+    oldSize: {x: 1.0416666, y: 6.6666665}
+    newSize: {x: 0.25, y: 1.6}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
     adaptiveTiling: 0
@@ -263,6 +263,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Pipes
   speed: 5
+  spriteRenderer: {fileID: 0}
 --- !u!1 &6983736062064050202
 GameObject:
   m_ObjectHideFlags: 0
@@ -343,7 +344,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 1304208510633726333, guid: 7e81851b59bbd4e479b3f966fe0e9bf4, type: 3}
+  m_Sprite: {fileID: 3052964475314764898, guid: 8154dda5e0385e7499254288b52a6982, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -392,7 +393,7 @@ BoxCollider2D:
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 1.0833334, y: 6.6666665}
+    oldSize: {x: 1.0416666, y: 6.6666665}
     newSize: {x: 1.0833334, y: 6.6666665}
     adaptiveTilingThreshold: 0.5
     drawMode: 0

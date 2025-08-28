@@ -6,43 +6,27 @@ public class Birb : MonoBehaviour
     private Vector3 direction;
     public float gravity = -9.8f;
     public float strength = 5;
-
-    private SpriteRenderer spriteRenderer;
-    private AudioSource audioSource;
-    public AudioClip audioTest;
     public GameManager gameManager;
-    public Sprite[] sprites;
-    private int spriteIndex;
+    public SpriteRenderer spriteRenderer;
 
+    public float roatationSpeed = 30;
 
-
-    void Start()
-    {
-        spriteRenderer = GetComponent<SpriteRenderer>();
-        InvokeRepeating(nameof(AnimateSprite), .15f, .15f);
-        
-    }
 
     void Update()
     {
         if (Input.GetKeyDown(KeyCode.Space))
         {
             direction = Vector3.up * strength;
-            audioSource.PlayOneShot(audioTest);
+            //gameObject.transform.Rotate(0, 0, 45, Space.World); //Backflipping boy
+            gameObject.transform.rotation = Quaternion.Euler(0, 0, 45);
+            
         }
+        gameObject.transform.Rotate(0, 0, -roatationSpeed * Time.deltaTime, Space.World);
         direction.y += gravity * Time.deltaTime;
         transform.position += direction * Time.deltaTime;
     }
-    private void AnimateSprite()
+    private void OnTriggerEnter2D(Collider2D other)
     {
-        spriteIndex++;
-        if (spriteIndex >= sprites.Length)
-        {
-            spriteIndex = 0;
-        }
-        spriteRenderer.sprite = sprites[spriteIndex];
-    }
-    private void OnTriggerEnter2D(Collider2D other) {
         if (other.gameObject.tag == "Obstacle")
         {
             gameManager.GameOver();

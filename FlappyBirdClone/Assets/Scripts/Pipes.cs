@@ -4,6 +4,7 @@ public class Pipes : MonoBehaviour
 {
     public float speed = 5f;
     private float leftEdge;
+    public SpriteRenderer spriteRenderer;
 
     void Start()
     {

@@ -2,5 +2,4 @@
 
 Question for MrTeacher
 
-- FindGameobjectbyanytype
-- Input System
+- GameManager line 38.
