@@ -11,7 +11,7 @@ public class GameManager : MonoBehaviour
     private SpriteRenderer upperPipe;
     private SpriteRenderer lowerPipe;
 
-
+    public Evildooer spawner;
     public Text scoreText;
     private bool isPlaying = false;
 
@@ -20,7 +20,8 @@ public class GameManager : MonoBehaviour
     public GameObject overButton;
     public GameObject normalButton;
     public GameObject chinaButton;
-    private Pipes[] pipes;
+    public GameObject highScoreText;
+    //private Pipes[] pipes;
 
     //Sprites Below
     private SpriteRenderer birbSpriteRenderer;
@@ -46,20 +47,18 @@ public class GameManager : MonoBehaviour
         activeSprites = normalSprites;
 
         birbSpriteRenderer = birb.spriteRenderer;
+        spawner = FindAnyObjectByType<Evildooer>();
         InvokeRepeating(nameof(AnimateSprite), .15f, .15f);
     }
 
     void Update()
     {
-
         if (Input.GetKeyDown(KeyCode.Space) && isPlaying == false)
         {
             Play();
             birb.jump();
         }
     } 
-
-
 
     public void Awake()
     {
@@ -70,6 +69,7 @@ public class GameManager : MonoBehaviour
     public void Play()
     {
         isPlaying = true;
+        spawner.resetDifficulty();
         score = 0;
         scoreText.text = score.ToString();
 
@@ -78,20 +78,20 @@ public class GameManager : MonoBehaviour
         overButton.SetActive(false);
         normalButton.SetActive(false);
         chinaButton.SetActive(false);
+        highScoreText.SetActive(false);
 
         Time.timeScale = 1f;
         birb.enabled = true;
         birb.transform.rotation = Quaternion.Euler(0, 0, 0);
         birb.transform.position = new Vector3(0, 0, 0);
-
-        //Fråga anton varför detta fungerar.
-        pipes = FindObjectsByType<Pipes>(FindObjectsSortMode.None);
-        foreach (Pipes pipe in pipes)
+        if (spawner.activePipes.Count > 0)
         {
-            Destroy(pipe.gameObject); // Important: destroy the GameObject, not just the component
+            for (int i = spawner.activePipes.Count - 1; i >= 0; i--)
+            {
+                Destroy(spawner.activePipes[i]);
+                spawner.activePipes.Remove(gameObject);
+            }
         }
-        
-
     }
     public void pause()
     {
@@ -113,9 +113,9 @@ public class GameManager : MonoBehaviour
         playButton.SetActive(true);
         normalButton.SetActive(true);
         chinaButton.SetActive(true);
+        highScoreText.SetActive(true);
 
     }
-    
     private void AnimateSprite()
     {
         spriteIndex++;
@@ -125,7 +125,6 @@ public class GameManager : MonoBehaviour
         }
         birb.spriteRenderer.sprite = activeSprites[spriteIndex];
     }
-
 
     public void normalBirb()
     {

@@ -263,7 +263,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Pipes
   speed: 5
-  spriteRenderer: {fileID: 0}
+  spawner: {fileID: 0}
 --- !u!1 &6983736062064050202
 GameObject:
   m_ObjectHideFlags: 0

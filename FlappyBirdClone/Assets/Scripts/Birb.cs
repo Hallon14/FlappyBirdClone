@@ -9,8 +9,7 @@ public class Birb : MonoBehaviour
     public GameManager gameManager;
     public SpriteRenderer spriteRenderer;
 
-    public float roatationSpeed = 30;
-
+    private float roatationSpeed = 90;
 
     void Update()
     {
@@ -22,6 +21,7 @@ public class Birb : MonoBehaviour
         direction.y += gravity * Time.deltaTime;
         transform.position += direction * Time.deltaTime;
     }
+
     private void OnTriggerEnter2D(Collider2D other)
     {
         if (other.gameObject.tag == "Obstacle")
@@ -37,11 +37,7 @@ public class Birb : MonoBehaviour
     {
         direction = Vector3.up * strength;
         //gameObject.transform.Rotate(0, 0, 45, Space.World); //Backflipping boy
-        gameObject.transform.rotation = Quaternion.Euler(0, 0, 45);
-        gameObject.transform.Rotate(0, 0, -roatationSpeed * Time.deltaTime, Space.World);
-
-        direction.y += gravity * Time.deltaTime;
-        transform.position += direction * Time.deltaTime;
+        gameObject.transform.rotation = Quaternion.Euler(0, 0, 40);
     }
 }
 
