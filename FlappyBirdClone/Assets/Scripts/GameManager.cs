@@ -13,6 +13,7 @@ public class GameManager : MonoBehaviour
 
     public Evildooer spawner;
     public Text scoreText;
+    public Text _highScoreScore;
     private bool isPlaying = false;
 
     public GameObject playButton;
@@ -21,7 +22,8 @@ public class GameManager : MonoBehaviour
     public GameObject normalButton;
     public GameObject chinaButton;
     public GameObject highScoreText;
-    //private Pipes[] pipes;
+    public GameObject highScoreScore;
+    public GameObject exitButton;
 
     //Sprites Below
     private SpriteRenderer birbSpriteRenderer;
@@ -37,6 +39,7 @@ public class GameManager : MonoBehaviour
     private int spriteIndex;
 
     private int score;
+    private int highScore;
 
     void Start()
     {
@@ -45,6 +48,7 @@ public class GameManager : MonoBehaviour
         upperPipe.sprite = pipeNormal;
         lowerPipe.sprite = pipeNormal;
         activeSprites = normalSprites;
+
 
         birbSpriteRenderer = birb.spriteRenderer;
         spawner = FindAnyObjectByType<Evildooer>();
@@ -58,7 +62,7 @@ public class GameManager : MonoBehaviour
             Play();
             birb.jump();
         }
-    } 
+    }
 
     public void Awake()
     {
@@ -78,7 +82,7 @@ public class GameManager : MonoBehaviour
         overButton.SetActive(false);
         normalButton.SetActive(false);
         chinaButton.SetActive(false);
-        highScoreText.SetActive(false);
+        exitButton.SetActive(false);
 
         Time.timeScale = 1f;
         birb.enabled = true;
@@ -107,13 +111,19 @@ public class GameManager : MonoBehaviour
     }
     public void GameOver()
     {
+        if (score > highScore)
+        {
+            highScore = score;
+            _highScoreScore.text = highScore.ToString();
+        }
         gameButton.SetActive(true);
         overButton.SetActive(true);
         pause();
         playButton.SetActive(true);
         normalButton.SetActive(true);
         chinaButton.SetActive(true);
-        highScoreText.SetActive(true);
+        exitButton.SetActive(true);
+
 
     }
     private void AnimateSprite()
@@ -142,5 +152,9 @@ public class GameManager : MonoBehaviour
         upperPipe.sprite = pipeChina;
         lowerPipe.sprite = pipeChina;
         birb.spriteRenderer.sprite = birbChina;
+    }
+    public void exitGame()
+    {
+        Application.Quit();
     }
 }
